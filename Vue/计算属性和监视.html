@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+
+    <!--
+        1. 计算属性
+            在 computed 属性对象中定义计算属性的方法
+            在页面中使用{{方法名}}来显示计算结果
+        2. 监事属性：
+            通过 vm 对象的 $watch() 或 $watch 配置来监视指定的属性
+            当属性变化时，回调函数自动调用，在函数内部进行计算
+        3. 计算属性高级：
+            通过 getter/setter 实现对属性的显示和监视
+            计算属性存在缓存，多次读取只执行一次 getter计算
+    -->
+
+
+    <div id="demo">
+        姓：<input type="text" placeholder="First Name" v-model="firstName"><br>
+        名：<input type="text" placeholder="Last Name" v-model="lastName"><br>
+        姓名1（单向）：<input type="text" placeholder="Full Name1" v-model="fullName1"><br>
+        姓名1（单向）：<input type="text" placeholder="Full Name2" v-model="fullName2"><br>
+        姓名1（双向）：<input type="text" placeholder="Full Name3" v-model="fullName3"><br>
+    </div>
+
+
+    <script type="text/javascript">
+        const vm = new Vue({
+            el : '#demo',
+            data :{
+                firstName : '张',
+                lastName : ' 俊帅',
+                // fullName1 : '张 俊帅'
+            },
+            computed : {
+                fullName1() {//计算属性中的一个方法，方法的返回值作为属性值
+                    console.log('fullName1()')
+                    return this.firstName + '' + this.lastName
+                }
+            }
+        })
+    </script>
+</body>
+</html>
